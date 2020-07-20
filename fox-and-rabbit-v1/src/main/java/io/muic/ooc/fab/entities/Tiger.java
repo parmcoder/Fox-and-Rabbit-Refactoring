@@ -1,4 +1,4 @@
-package io.muic.ooc.fab.animals;
+package io.muic.ooc.fab.entities;
 
 public class Tiger {
 }

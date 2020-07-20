@@ -1,4 +1,4 @@
 package io.muic.ooc.fab.entities;
 
-public class Hunter {
+public class AnimalFactory {
 }

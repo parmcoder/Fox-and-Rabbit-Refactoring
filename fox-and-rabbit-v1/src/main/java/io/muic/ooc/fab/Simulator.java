@@ -1,6 +1,8 @@
 package io.muic.ooc.fab;
 
 
+import io.muic.ooc.fab.entities.Fox;
+import io.muic.ooc.fab.entities.Rabbit;
 import io.muic.ooc.fab.view.SimulatorView;
 import java.util.Random;
 import java.util.List;
