@@ -1,4 +1,7 @@
-package io.muic.ooc.fab;
+package io.muic.ooc.fab.animals;
+
+import io.muic.ooc.fab.Field;
+import io.muic.ooc.fab.Location;
 
 import java.util.List;
 import java.util.Random;
