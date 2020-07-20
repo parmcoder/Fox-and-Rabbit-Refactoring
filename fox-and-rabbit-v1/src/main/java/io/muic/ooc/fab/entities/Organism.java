@@ -5,6 +5,8 @@ import io.muic.ooc.fab.Location;
 import java.util.List;
 
 public interface Organism {
+    void act(List<Organism> newAnimals);
+
     void run(List<Organism> newLives);
 
     boolean isAlive();

@@ -29,8 +29,8 @@ public abstract class Animal implements Organism {
      * or with a random age.
      *
      * @param randomAge If true, the animal will have a random age.
-     * @param field The field currently occupied.
-     * @param location The location within the field.
+     * @param field     The field currently occupied.
+     * @param location  The location within the field.
      */
     public void initialize(boolean randomAge, Field field, Location location) {
         this.field = field;
@@ -42,7 +42,8 @@ public abstract class Animal implements Organism {
 
     public abstract Location moveToNewLocation();
 
-    public void act(List<Organism> newAnimals){
+    @Override
+    public void act(List<Organism> newAnimals) {
         incrementAge();
         if (isAlive()) {
             giveBirth(newAnimals);
@@ -134,20 +135,22 @@ public abstract class Animal implements Organism {
     @Override
     public void incrementAge() {
         age++;
-        if (age > MAX_AGE) {
+        if (age > getMaxAge()) {
             setDead();
         }
     }
 
+    protected abstract int getMaxAge();
+
     /**
-     * Check whether or not this rabbit is to give birth at this step. New
+     * Check whether or not this animal is to give birth at this step. New
      * births will be made into free adjacent locations.
      *
-     * @param newRabbits A list to return newly born animals.
+     * @param newAnimals A list to return newly born animals.
      */
     @Override
-    public void giveBirth(List<Organism> newRabbits) {
-        // New rabbits are born into adjacent locations.
+    public void giveBirth(List<Organism> newAnimals) {
+        // New animals are born into adjacent locations.
         // Get a list of adjacent free locations.
         List<Location> free = field.getFreeAdjacentLocations(location);
         int births = breed();
@@ -156,10 +159,15 @@ public abstract class Animal implements Organism {
             /*
             ? Need a factory for abstract class
              */
-//            Animal young = new Animal(false, field, loc);
-//            newAnimals.add(young);
+            Animal young = breedOne(false, field, loc);
+            newAnimals.add(young);
         }
     }
+
+    private Animal breedOne(boolean randomAge, Field field, Location location) {
+        return AnimalFactory.createAnimal(getClass(), field, location);
+    }
+
 
     /**
      * Generate a number representing the number of births, if it can breed.
@@ -169,11 +177,15 @@ public abstract class Animal implements Organism {
     @Override
     public int breed() {
         int births = 0;
-        if (canBreed() && RANDOM.nextDouble() <= BREEDING_PROBABILITY) {
-            births = RANDOM.nextInt(MAX_LITTER_SIZE) + 1;
+        if (canBreed() && RANDOM.nextDouble() <= getBreedingProbability()) {
+            births = RANDOM.nextInt(getMaxLiterSize()) + 1;
         }
         return births;
     }
+
+    protected abstract int getMaxLiterSize();
+
+    protected abstract double getBreedingProbability();
 
     /**
      * A rabbit can breed if it has reached the breeding age.
@@ -182,6 +194,8 @@ public abstract class Animal implements Organism {
      */
     @Override
     public boolean canBreed() {
-        return age >= BREEDING_AGE;
+        return age >= getBreedingAge();
     }
+
+    protected abstract int getBreedingAge();
 }
