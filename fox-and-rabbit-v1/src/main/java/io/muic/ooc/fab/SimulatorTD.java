@@ -1,6 +1,6 @@
 package io.muic.ooc.fab;
 
-public class Main {
+public class SimulatorTD {
     public static void main(String[] args) {
 
         Simulator simulator = new Simulator();

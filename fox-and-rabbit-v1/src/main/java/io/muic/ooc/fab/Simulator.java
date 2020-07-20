@@ -1,13 +1,15 @@
 package io.muic.ooc.fab;
 
 
+import io.muic.ooc.fab.Utilities.Field;
+import io.muic.ooc.fab.Utilities.FieldPopulator;
+import io.muic.ooc.fab.Utilities.Location;
 import io.muic.ooc.fab.entities.*;
 import io.muic.ooc.fab.view.SimulatorView;
-import java.util.Random;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.awt.Color;
 
 public class Simulator {
 
@@ -110,36 +112,10 @@ public class Simulator {
     public void reset() {
         step = 0;
         animals.clear();
-        populate();
+        new FieldPopulator().populate(field, animals);
 
         // Show the starting state in the view.
         view.showStatus(step, field);
-    }
-
-    /**
-     * Randomly populate the field with foxes and rabbits.
-     */
-    /*
-    ? I might need to change how this work
-     */
-    private void populate() {
-        
-        field.clear();
-        for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                if (RANDOM.nextDouble() <= FOX_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Fox fox = new Fox();
-                    fox.initialize(,field,location);
-                    foxes.add(fox);
-                } else if (RANDOM.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(field, location);
-                    rabbits.add(rabbit);
-                }
-                // else leave the location empty.
-            }
-        }
     }
 
     /**

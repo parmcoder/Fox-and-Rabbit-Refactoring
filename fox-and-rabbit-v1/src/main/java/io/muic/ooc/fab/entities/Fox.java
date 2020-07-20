@@ -1,11 +1,10 @@
 package io.muic.ooc.fab.entities;
 
-import io.muic.ooc.fab.Field;
-import io.muic.ooc.fab.Location;
+import io.muic.ooc.fab.Utilities.Field;
+import io.muic.ooc.fab.Utilities.Location;
 
 import java.util.List;
 import java.util.Iterator;
-import java.util.Random;
 
 public class Fox extends Animal{
     // Characteristics shared by all foxes (class variables).

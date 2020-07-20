@@ -1,7 +1,7 @@
 package io.muic.ooc.fab.entities;
 
-import io.muic.ooc.fab.Field;
-import io.muic.ooc.fab.Location;
+import io.muic.ooc.fab.Utilities.Field;
+import io.muic.ooc.fab.Utilities.Location;
 
 import java.util.HashMap;
 import java.util.Map;
