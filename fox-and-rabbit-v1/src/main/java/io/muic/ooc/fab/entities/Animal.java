@@ -27,7 +27,7 @@ public abstract class Animal implements Organism {
     private int age = 0;
 
     /*
-    * These methods will be changed according to each species
+     * These methods will be changed according to each species
      */
     public abstract Location moveToNewLocation();
 

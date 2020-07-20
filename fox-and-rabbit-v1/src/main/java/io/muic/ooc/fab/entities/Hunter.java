@@ -1,30 +1,90 @@
 package io.muic.ooc.fab.entities;
 
+import io.muic.ooc.fab.utilities.Field;
 import io.muic.ooc.fab.utilities.Location;
 
-public class Hunter extends Animal{
-    @Override
-    public Location moveToNewLocation() {
-        return null;
-    }
+import java.util.Iterator;
+import java.util.List;
 
-    @Override
-    protected int getBreedingAge() {
-        return 0;
-    }
+public class Hunter extends Animal {
 
+    /**
+     * Create a Hunter. A Hunter can be created as a new born (age zero and not
+     * hungry) or with a random age and food level.
+     *
+     * @param randomAge If true, the fox will have random age and hunger level.
+     * @param field     The field currently occupied.
+     * @param location  The location within the field.
+     */
     @Override
-    protected int getMaxLiterSize() {
-        return 0;
+    public void initialize(boolean randomAge, Field field, Location location) {
+        super.initialize(randomAge, field, location);
     }
 
     @Override
     protected double getBreedingProbability() {
-        return 0;
+        return 0.0009;
     }
 
     @Override
+    protected int getMaxLiterSize() {
+        return 2;
+    }
+
+    @Override
+    protected int getBreedingAge() {
+        return 60;
+    }
+
+    @Override
+    public Location moveToNewLocation() {
+        Location newLocation = findFood();
+        if (newLocation == null) {
+            newLocation = field.freeAdjacentLocation(getLocation());
+        }
+        return newLocation;
+    }
+
+    // make it immortal;
+    @Override
     protected int getMaxAge() {
-        return 0;
+        return Integer.MAX_VALUE;
+    }
+
+    @Override
+    public void act(List<Organism> newAnimals) {
+        super.act(newAnimals);
+    }
+
+    private Location findFood() {
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while (it.hasNext()) {
+            Location where = it.next();
+            Object animal = field.getObjectAt(where);
+            if (animal instanceof Rabbit) {
+                Rabbit rabbit = (Rabbit) animal;
+                if (rabbit.isAlive()) {
+                    rabbit.setDead();
+                    return where;
+                }
+            }
+            if (animal instanceof Fox) {
+                Fox fox = (Fox) animal;
+                if (fox.isAlive()) {
+                    fox.setDead();
+                    return where;
+                }
+            }
+            if (animal instanceof Tiger) {
+                Tiger tiger = (Tiger) animal;
+                if (tiger.isAlive()) {
+                    tiger.setDead();
+                    return where;
+                }
+            }
+        }
+        return null;
     }
 }
+

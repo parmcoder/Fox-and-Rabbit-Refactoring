@@ -92,7 +92,7 @@ public class Simulator {
         // Provide space for newborn rabbits.
         List<Organism> newAnimals = new ArrayList<>();
         // Let all rabbits act.
-        for (Iterator<Organism> it = animals.iterator(); it.hasNext();) {
+        for (Iterator<Organism> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = (Animal) it.next();
             animal.act(newAnimals);
             if (!animal.isAlive()) {

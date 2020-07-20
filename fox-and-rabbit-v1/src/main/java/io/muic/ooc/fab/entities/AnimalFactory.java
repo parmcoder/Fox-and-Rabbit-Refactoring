@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AnimalFactory {
-    private static Map<AnimalSpecies, Class> animalClassMap = new HashMap<AnimalSpecies, Class>(){{
+    private static Map<AnimalSpecies, Class> animalClassMap = new HashMap<AnimalSpecies, Class>() {{
         AnimalSpecies[] animalSpecies = AnimalSpecies.values();
         for (int i = 0; i < animalSpecies.length; i++) {
             put(animalSpecies[i], animalSpecies[i].getAnimalClass());
