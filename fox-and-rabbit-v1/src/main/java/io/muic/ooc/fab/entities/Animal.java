@@ -24,14 +24,7 @@ public abstract class Animal implements Organism {
     // The animal's age.
     private int age = 0;
 
-    /**
-     * Create a new animal. A rabbit may be created with age zero (a new born)
-     * or with a random age.
-     *
-     * @param randomAge If true, the animal will have a random age.
-     * @param field     The field currently occupied.
-     * @param location  The location within the field.
-     */
+    @Override
     public void initialize(boolean randomAge, Field field, Location location) {
         this.field = field;
         setLocation(location);
@@ -59,12 +52,6 @@ public abstract class Animal implements Organism {
         }
     }
 
-    /**
-     * This is what the animal does most of the time - it runs around. Sometimes
-     * it will breed or die of old age.
-     *
-     * @param newAnimals A list to return newly born rabbits.
-     */
     @Override
     public void run(List<Organism> newAnimals) {
         incrementAge();
@@ -81,20 +68,12 @@ public abstract class Animal implements Organism {
         }
     }
 
-    /**
-     * Check whether the animal is alive or not.
-     *
-     * @return true if the animal is still alive.
-     */
     @Override
     public boolean isAlive() {
         return alive;
     }
 
-    /**
-     * Indicate that the animal is no longer alive. It is removed from the
-     * field.
-     */
+
     @Override
     public void setDead() {
         alive = false;
@@ -105,21 +84,13 @@ public abstract class Animal implements Organism {
         }
     }
 
-    /**
-     * Return the animal's location.
-     *
-     * @return The animal's location.
-     */
+
     @Override
     public Location getLocation() {
         return location;
     }
 
-    /**
-     * Place the animal at the new location in the given field.
-     *
-     * @param newLocation The animal's new location.
-     */
+
     @Override
     public void setLocation(Location newLocation) {
         if (location != null) {
@@ -129,9 +100,7 @@ public abstract class Animal implements Organism {
         field.place(this, newLocation);
     }
 
-    /**
-     * Increase the age. This could result in the animal's death.
-     */
+
     @Override
     public void incrementAge() {
         age++;
@@ -142,12 +111,7 @@ public abstract class Animal implements Organism {
 
     protected abstract int getMaxAge();
 
-    /**
-     * Check whether or not this animal is to give birth at this step. New
-     * births will be made into free adjacent locations.
-     *
-     * @param newAnimals A list to return newly born animals.
-     */
+
     @Override
     public void giveBirth(List<Organism> newAnimals) {
         // New animals are born into adjacent locations.
@@ -159,21 +123,17 @@ public abstract class Animal implements Organism {
             /*
             ? Need a factory for abstract class
              */
-            Animal young = breedOne(false, field, loc);
+            Animal young = breedOne(field, loc);
             newAnimals.add(young);
         }
     }
 
-    private Animal breedOne(boolean randomAge, Field field, Location location) {
+    @Override
+    public Animal breedOne(Field field, Location location) {
         return AnimalFactory.createAnimal(getClass(), field, location);
     }
 
 
-    /**
-     * Generate a number representing the number of births, if it can breed.
-     *
-     * @return The number of births (may be zero).
-     */
     @Override
     public int breed() {
         int births = 0;
@@ -187,11 +147,7 @@ public abstract class Animal implements Organism {
 
     protected abstract double getBreedingProbability();
 
-    /**
-     * A rabbit can breed if it has reached the breeding age.
-     *
-     * @return true if the rabbit can breed, false otherwise.
-     */
+
     @Override
     public boolean canBreed() {
         return age >= getBreedingAge();
