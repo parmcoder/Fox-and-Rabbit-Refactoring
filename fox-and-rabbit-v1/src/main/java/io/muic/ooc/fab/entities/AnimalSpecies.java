@@ -4,10 +4,10 @@ import java.awt.*;
 
 public enum AnimalSpecies {
 
-        RABBIT(0.08, Rabbit.class, Color.ORANGE, 9),
-        FOX(0.02, Fox.class, Color.BLUE, 15);
-//        TIGER(0.02, Tiger.class, Color.RED, 40),
-//        HUNTER(0.001, Hunter.class, Color.CYAN,0);
+        RABBIT(0.1, Rabbit.class, Color.PINK, 9),
+        FOX(0.02, Fox.class, Color.ORANGE, 15),
+        TIGER(0.01, Tiger.class, Color.BLACK, 50);
+//        HUNTER(0.0009, Hunter.class, Color.RED,0);
 
         private double breedingProbability;
 

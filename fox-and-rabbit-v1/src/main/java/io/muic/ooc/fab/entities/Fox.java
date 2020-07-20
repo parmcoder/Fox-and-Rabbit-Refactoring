@@ -6,7 +6,7 @@ import io.muic.ooc.fab.Utilities.Location;
 import java.util.List;
 import java.util.Iterator;
 
-public class Fox extends Animal{
+public class Fox extends Animal implements Predator{
     // Characteristics shared by all foxes (class variables).
 
     // The fox's food level, which is increased by eating rabbits.
@@ -57,7 +57,8 @@ public class Fox extends Animal{
     /**
      * Make this fox more hungry. This could result in the fox's death.
      */
-    private void incrementHunger() {
+    @Override
+    public void incrementHunger() {
         foodLevel--;
         if (foodLevel <= 0) {
             setDead();
@@ -76,7 +77,8 @@ public class Fox extends Animal{
      *
      * @return Where food was found, or null if it wasn't.
      */
-    private Location findFood() {
+    @Override
+    public Location findFood() {
         List<Location> adjacent = field.adjacentLocations(getLocation());
         Iterator<Location> it = adjacent.iterator();
         while (it.hasNext()) {
