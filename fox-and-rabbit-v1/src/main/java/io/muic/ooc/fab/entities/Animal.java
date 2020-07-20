@@ -18,11 +18,26 @@ public abstract class Animal implements Organism {
 
     // The animal's position.
     private Location location;
+
     // The field occupied.
     protected Field field;
+
     // Individual characteristics (instance fields).
     // The animal's age.
     private int age = 0;
+
+    /*
+    * These methods will be changed according to each species
+     */
+    public abstract Location moveToNewLocation();
+
+    protected abstract int getBreedingAge();
+
+    protected abstract int getMaxLiterSize();
+
+    protected abstract double getBreedingProbability();
+
+    protected abstract int getMaxAge();
 
     @Override
     public void initialize(boolean randomAge, Field field, Location location) {
@@ -32,8 +47,6 @@ public abstract class Animal implements Organism {
             age = RANDOM.nextInt(getMaxAge());
         }
     }
-
-    public abstract Location moveToNewLocation();
 
     @Override
     public void act(List<Organism> newAnimals) {
@@ -73,7 +86,6 @@ public abstract class Animal implements Organism {
         return alive;
     }
 
-
     @Override
     public void setDead() {
         alive = false;
@@ -83,7 +95,6 @@ public abstract class Animal implements Organism {
             field = null;
         }
     }
-
 
     @Override
     public Location getLocation() {
@@ -100,7 +111,6 @@ public abstract class Animal implements Organism {
         field.place(this, newLocation);
     }
 
-
     @Override
     public void incrementAge() {
         age++;
@@ -108,9 +118,6 @@ public abstract class Animal implements Organism {
             setDead();
         }
     }
-
-    protected abstract int getMaxAge();
-
 
     @Override
     public void giveBirth(List<Organism> newAnimals) {
@@ -143,15 +150,9 @@ public abstract class Animal implements Organism {
         return births;
     }
 
-    protected abstract int getMaxLiterSize();
-
-    protected abstract double getBreedingProbability();
-
-
     @Override
     public boolean canBreed() {
         return age >= getBreedingAge();
     }
 
-    protected abstract int getBreedingAge();
 }

@@ -31,6 +31,6 @@ public class AnimalFactory {
                 e.printStackTrace();
             }
         }
-        throw new IllegalArgumentException("Unknown animalType");
+        throw new IllegalArgumentException("Unknown Species");
     }
 }
