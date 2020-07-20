@@ -33,7 +33,7 @@ public class Hunter extends Animal {
 
     @Override
     protected int getBreedingAge() {
-        return 60;
+        return 80;
     }
 
     @Override
@@ -76,6 +76,9 @@ public class Hunter extends Animal {
                     return where;
                 }
             }
+            /*
+             * Hunt a tiger also
+             */
             if (animal instanceof Tiger) {
                 Tiger tiger = (Tiger) animal;
                 if (tiger.isAlive()) {

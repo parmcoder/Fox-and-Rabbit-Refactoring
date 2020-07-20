@@ -73,6 +73,9 @@ public class Tiger extends Animal {
                     return where;
                 }
             }
+            /*
+            * Hunt a fox also
+             */
             if (animal instanceof Fox) {
                 Fox fox = (Fox) animal;
                 if (fox.isAlive()) {
