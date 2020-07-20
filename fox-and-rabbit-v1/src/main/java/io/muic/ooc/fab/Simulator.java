@@ -1,9 +1,8 @@
 package io.muic.ooc.fab;
 
 
-import io.muic.ooc.fab.Utilities.Field;
-import io.muic.ooc.fab.Utilities.FieldPopulator;
-import io.muic.ooc.fab.Utilities.Location;
+import io.muic.ooc.fab.utilities.Field;
+import io.muic.ooc.fab.utilities.FieldPopulator;
 import io.muic.ooc.fab.entities.*;
 import io.muic.ooc.fab.view.SimulatorView;
 

@@ -1,16 +1,22 @@
 package io.muic.ooc.fab.entities;
 
-import io.muic.ooc.fab.Utilities.Field;
-import io.muic.ooc.fab.Utilities.Location;
+import io.muic.ooc.fab.utilities.Field;
+import io.muic.ooc.fab.utilities.Location;
 
 import java.util.List;
 import java.util.Iterator;
 
-public class Fox extends Animal implements Predator{
+public class Fox extends Animal {
     // Characteristics shared by all foxes (class variables).
 
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
+
+    @Override
+    public void initialize(boolean randomAge, Field field, Location location) {
+        super.initialize(randomAge, field, location);
+        foodLevel = RANDOM.nextInt(AnimalSpecies.RABBIT.getFoodValue());
+    }
 
     @Override
     protected int getMaxAge() {
@@ -36,7 +42,6 @@ public class Fox extends Animal implements Predator{
     public Location moveToNewLocation() {
         Location newLocation = findFood();
         if (newLocation == null) {
-            // No food found - try to move to a free location.
             newLocation = field.freeAdjacentLocation(getLocation());
         }
         return newLocation;
@@ -57,18 +62,11 @@ public class Fox extends Animal implements Predator{
     /**
      * Make this fox more hungry. This could result in the fox's death.
      */
-    @Override
     public void incrementHunger() {
         foodLevel--;
         if (foodLevel <= 0) {
             setDead();
         }
-    }
-
-    @Override
-    public void initialize(boolean randomAge, Field field, Location location) {
-        super.initialize(randomAge, field, location);
-        foodLevel = RANDOM.nextInt(AnimalSpecies.RABBIT.getFoodValue());
     }
 
     /**
@@ -77,7 +75,7 @@ public class Fox extends Animal implements Predator{
      *
      * @return Where food was found, or null if it wasn't.
      */
-    @Override
+
     public Location findFood() {
         List<Location> adjacent = field.adjacentLocations(getLocation());
         Iterator<Location> it = adjacent.iterator();
@@ -95,4 +93,5 @@ public class Fox extends Animal implements Predator{
         }
         return null;
     }
+
 }

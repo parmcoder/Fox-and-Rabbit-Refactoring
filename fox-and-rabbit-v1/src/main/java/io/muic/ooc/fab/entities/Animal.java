@@ -1,7 +1,7 @@
 package io.muic.ooc.fab.entities;
 
-import io.muic.ooc.fab.Utilities.Field;
-import io.muic.ooc.fab.Utilities.Location;
+import io.muic.ooc.fab.utilities.Field;
+import io.muic.ooc.fab.utilities.Location;
 
 import java.util.List;
 import java.util.Random;

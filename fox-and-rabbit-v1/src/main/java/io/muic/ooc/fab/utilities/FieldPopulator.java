@@ -1,4 +1,4 @@
-package io.muic.ooc.fab.Utilities;
+package io.muic.ooc.fab.utilities;
 
 import io.muic.ooc.fab.entities.Animal;
 import io.muic.ooc.fab.entities.AnimalFactory;

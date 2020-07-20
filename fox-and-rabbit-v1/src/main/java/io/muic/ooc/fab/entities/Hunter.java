@@ -1,6 +1,6 @@
 package io.muic.ooc.fab.entities;
 
-import io.muic.ooc.fab.Utilities.Location;
+import io.muic.ooc.fab.utilities.Location;
 
 public class Hunter extends Animal{
     @Override

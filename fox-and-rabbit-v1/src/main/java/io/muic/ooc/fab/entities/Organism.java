@@ -1,7 +1,7 @@
 package io.muic.ooc.fab.entities;
 
-import io.muic.ooc.fab.Utilities.Field;
-import io.muic.ooc.fab.Utilities.Location;
+import io.muic.ooc.fab.utilities.Field;
+import io.muic.ooc.fab.utilities.Location;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface Organism {
     void initialize(boolean randomAge, Field field, Location location);
 
 
-    void act(List<Organism> newAnimals);
+    abstract void act(List<Organism> newAnimals);
 
     /**
      * This is what the animal does most of the time - it runs around. Sometimes

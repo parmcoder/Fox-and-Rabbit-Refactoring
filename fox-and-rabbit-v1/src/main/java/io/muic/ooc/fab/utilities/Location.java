@@ -1,4 +1,4 @@
-package io.muic.ooc.fab.Utilities;
+package io.muic.ooc.fab.utilities;
 
 public class Location {
 
