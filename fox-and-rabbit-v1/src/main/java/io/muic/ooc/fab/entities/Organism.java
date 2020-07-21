@@ -18,15 +18,7 @@ public interface Organism {
     void initialize(boolean randomAge, Field field, Location location);
 
 
-    abstract void act(List<Organism> newAnimals);
-
-    /**
-     * This is what the animal does most of the time - it runs around. Sometimes
-     * it will breed or die of old age.
-     *
-     * @param newAnimals A list to return newly born rabbits.
-     */
-    void run(List<Organism> newAnimals);
+    void act(List<Organism> newAnimals);
 
     /**
      * Check whether the animal is alive or not.
