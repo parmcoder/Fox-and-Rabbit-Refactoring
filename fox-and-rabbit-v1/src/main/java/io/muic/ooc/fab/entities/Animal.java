@@ -66,22 +66,6 @@ public abstract class Animal implements Organism {
     }
 
     @Override
-    public void run(List<Organism> newAnimals) {
-        incrementAge();
-        if (alive) {
-            giveBirth(newAnimals);
-            // Try to move into a free location.
-            Location newLocation = field.freeAdjacentLocation(location);
-            if (newLocation != null) {
-                setLocation(newLocation);
-            } else {
-                // Overcrowding.
-                setDead();
-            }
-        }
-    }
-
-    @Override
     public boolean isAlive() {
         return alive;
     }
